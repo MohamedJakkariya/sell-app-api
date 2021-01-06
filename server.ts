@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
-// import path from 'path';
+import path from 'path';
 import Logger from 'js-logger';
 import bodyParser from 'body-parser';
 
@@ -9,7 +9,7 @@ import bodyParser from 'body-parser';
 config();
 
 // Set default root path
-// global.ROOT_PATH = path.resolve(__dirname);
+global.ROOT_PATH = path.resolve(__dirname);
 
 // Configuration variables
 const app = express();
