@@ -1,9 +1,12 @@
-require('dotenv').config();
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-const Logger = require('js-logger');
-const bodyParser = require('body-parser');
+import { config } from 'dotenv';
+import express from 'express';
+import morgan from 'morgan';
+import path from 'path';
+import Logger from 'js-logger';
+import bodyParser from 'body-parser';
+
+// Set env configuration
+config();
 
 // Set default root path
 global.ROOT_PATH = path.resolve(__dirname);
