@@ -1,3 +1,22 @@
-node_modules
-request
+# Configurations 
 .env
+
+# Dependencies 
+node_modules
+
+# Production 
+build
+
+# Local Testing for api call folder 
+/request
+
+# Remove testing .html files
+/template
+
+# Garbage folder
+garbage
+
+# Remove cache command if needed in future 
+git rm -r --cached ./request
+
+ 
