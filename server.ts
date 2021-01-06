@@ -35,7 +35,8 @@ Logger.setLevel(process.env.LOGGER === 'production' ? Logger.INFO : Logger.DEBUG
 // app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
 
 // Base api route initialization
-app.use('/api/example', require('./api/routers/example'));
+app.use('/api/user', require('./api/routers/user'));
+app.use('/api/shop', require('./api/routers/shop'));
 
 // Server listening
 app.listen(process.env.PORT, () => {
