@@ -1,3 +1,1 @@
-class Sell {}
-
-export = Sell;
+export default class Sell {}

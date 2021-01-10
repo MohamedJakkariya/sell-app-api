@@ -9,7 +9,7 @@ import { ICreateProductItem } from 'types/shopApi';
 
 import BadRequest from 'api/Errors/BadRequest';
 
-class Product {
+export default class Product {
   /**
    * @param req it's automatically passed my express
    * @param res it's automatically passed my express
@@ -63,5 +63,3 @@ class Product {
     }
   };
 }
-
-export = Product;
