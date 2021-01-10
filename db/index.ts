@@ -1,4 +1,6 @@
-const Logger = require('js-logger');
+import Logger from 'js-logger';
+import mysql from 'mysql';
+
 /**
  * @format
  * @params : Options
@@ -6,7 +8,7 @@ const Logger = require('js-logger');
  * @desc :   Get all data from the given tables
  * @return : Promise
  */
-exports.poolConnect = (pool: { getConnection: (arg0: (err: any, connection: any) => void) => void }) => {
+const poolConnect = (pool: mysql.Pool): Promise<mysql.PoolConnection> => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, connection) => {
       if (err) return reject(err); // not connected!
@@ -21,10 +23,10 @@ exports.poolConnect = (pool: { getConnection: (arg0: (err: any, connection: any)
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.getAll = (
-  connection: { query: (arg0: string, arg1: (err: any, results: any) => void) => void },
-  options: { projections: any; table_names: any }
-) => {
+const getAll = (
+  connection: mysql.PoolConnection,
+  options: { projections: string; table_names: string }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(`SELECT ${options.projections} FROM ${options.table_names}`, (err, results) => {
       if (err) return reject(err);
@@ -39,10 +41,10 @@ exports.getAll = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.getOne = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any, result: any) => void) => void },
-  options: { projection: any; table_name: any; condition: any; values: any }
-) => {
+const getOne = (
+  connection: mysql.PoolConnection,
+  options: { projection: string; table_name: string; condition: string; values: [] | number | string }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(
       `SELECT ${options.projection} FROM ${options.table_name} WHERE ${options.condition}`,
@@ -60,10 +62,10 @@ exports.getOne = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.insertOne = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any, results: any) => void) => void },
-  options: { table_name: any; data: any }
-) => {
+const insertOne = (
+  connection: mysql.PoolConnection,
+  options: { table_name: string; data: object }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO ${options.table_name} SET ?`, options.data, (err, results) => {
       if (err) return reject(err);
@@ -79,10 +81,10 @@ exports.insertOne = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.deleteOne = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any, result: any) => void) => void },
-  options: { table_name: any; condition: any; value: any }
-) => {
+const deleteOne = (
+  connection: mysql.PoolConnection,
+  options: { table_name: string; condition: string; value: [] | number | string }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(`DELETE FROM ${options.table_name} WHERE ${options.condition}`, options.value, (err, result) => {
       if (err) return reject(err);
@@ -98,14 +100,13 @@ exports.deleteOne = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.getMulti = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any, results: any) => void) => void },
-  options: { projections: any; table_names: any; conditions: any; values: any }
-) => {
+const getMulti = (
+  connection: mysql.PoolConnection,
+  options: { projections: string; table_names: string; conditions: string; values: [] | number | string }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(
-      `select ${options.projections}  from ${options.table_names} where ${options.conditions} 
-    `,
+      `select ${options.projections}  from ${options.table_names} where ${options.conditions}`,
       options.values,
       (err, results) => {
         if (err) return reject(err);
@@ -121,10 +122,16 @@ exports.getMulti = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.updateOne = (
-  connection: { query: (arg0: string, arg1: any[], arg2: (err: any, results: any) => void) => void },
-  options: { table_name: any; updating_fields: any; key: any; updating_values: any; value: any }
-) => {
+const updateOne = (
+  connection: mysql.PoolConnection,
+  options: {
+    table_name: string;
+    updating_fields: string;
+    key: string;
+    updating_values: [];
+    value: [] | number | string;
+  }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(
       `UPDATE ${options.table_name} SET ${options.updating_fields} WHERE ${options.key} = ?`,
@@ -144,10 +151,7 @@ exports.updateOne = (
  * @return : <Promise>
  * @desc :   Get all data from the given tables
  */
-exports.foreignKeyMode = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any) => void) => void },
-  mode: number
-) => {
+const foreignKeyMode = (connection: mysql.PoolConnection, mode: number): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     connection.query(`SET FOREIGN_KEY_CHECKS = ?`, mode, err => {
       if (err) return reject(err);
@@ -163,7 +167,7 @@ exports.foreignKeyMode = (
  * @return : Error<stack>
  * @desc :   Return err depends on call back
  */
-exports.rollback = (connection: { rollback: (arg0: () => never) => any }, err: any) =>
+const rollback = (connection: mysql.PoolConnection, err: any) =>
   connection.rollback(() => {
     throw err;
   });
@@ -172,7 +176,7 @@ exports.rollback = (connection: { rollback: (arg0: () => never) => any }, err: a
  * @desc :   Complete the transaction
  * @return : boolean or err stack
  */
-exports.commit = (connection: { commit: (arg0: (err: any) => any) => void; rollback: (arg0: () => never) => any }) => {
+const commit = (connection: mysql.PoolConnection) => {
   connection.commit(err => {
     if (err)
       return connection.rollback(() => {
@@ -189,10 +193,7 @@ exports.commit = (connection: { commit: (arg0: (err: any) => any) => void; rollb
  * @return : <Promise>
  * @desc :   Insert data into multiple tables
  */
-exports.insertIntoMultiTables = (
-  connection: { query: (arg0: string, arg1: any[], arg2: (err: any, results: any) => void) => void },
-  options: any[]
-) => {
+const insertIntoMultiTables = (connection: mysql.PoolConnection, options: any[]): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     const baseQ = `INSERT INTO ? SET ? ; `;
 
@@ -221,10 +222,10 @@ exports.insertIntoMultiTables = (
  * @return : <Promise>
  * @desc :   Insert multiple data into same tables
  */
-exports.insertIntoMultiData = (
-  connection: { query: (arg0: string, arg1: any, arg2: (err: any, results: any) => void) => void },
-  options: { data: string | any[]; table_name: any }
-) => {
+const insertIntoMultiData = (
+  connection: mysql.PoolConnection,
+  options: { data: string | any[]; table_name: string }
+): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     const baseQ = `INSERT INTO SET ? ; `;
 
@@ -241,3 +242,20 @@ exports.insertIntoMultiData = (
     });
   });
 };
+
+const _ = {
+  poolConnect,
+  getOne,
+  getAll,
+  insertOne,
+  insertIntoMultiData,
+  insertIntoMultiTables,
+  deleteOne,
+  getMulti,
+  rollback,
+  commit,
+  foreignKeyMode,
+  updateOne
+};
+
+export default _;

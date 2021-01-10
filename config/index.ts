@@ -1,12 +1,14 @@
 /** @format */
-const mysql = require('mysql');
+import mysql from 'mysql';
+
+const { DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_PORT, DB_NAME } = process.env;
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOSTNAME,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  host: DB_HOSTNAME,
+  user: DB_USERNAME,
+  password: DB_PASSWORD,
+  port: DB_PORT ? +DB_PORT : 3306,
+  database: DB_NAME,
   acquireTimeout: 20000,
   multipleStatements: true,
   connectionLimit: 100,
@@ -14,4 +16,4 @@ const pool = mysql.createPool({
   debug: false
 });
 
-module.exports = pool;
+export default pool;

@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/express": "^4.17.9",
     "@types/morgan": "^1.9.2",
+    "@types/mysql": "^2.15.17",
     "@types/node": "^14.14.20",
     "nodemon": "2.0.6",
     "prettier": "^2.2.1",

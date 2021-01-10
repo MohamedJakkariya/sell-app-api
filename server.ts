@@ -8,7 +8,7 @@ import { IGlobal } from 'global';
 
 // Router files
 import userRouter from './api/routers/user';
-import shopRouter from './api/routers/user';
+import shopRouter from './api/routers/shop';
 
 declare const global: IGlobal;
 
