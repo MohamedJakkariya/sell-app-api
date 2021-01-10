@@ -4,7 +4,7 @@
 
 ## For users :
 
-> FETCH
+> FETCH 
 1. /api/user/login
 
 > INSERT

@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import path from 'path';
 import Logger from 'js-logger';
 import bodyParser from 'body-parser';
+import { IGlobal } from 'global';
+
+declare const global: IGlobal;
 
 // Set env configuration
 config();
