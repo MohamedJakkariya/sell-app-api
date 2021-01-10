@@ -6,6 +6,10 @@ import Logger from 'js-logger';
 import bodyParser from 'body-parser';
 import { IGlobal } from 'global';
 
+// Router files
+import userRouter from './api/routers/user';
+import shopRouter from './api/routers/user';
+
 declare const global: IGlobal;
 
 // Set env configuration
@@ -38,8 +42,8 @@ Logger.setLevel(process.env.LOGGER === 'production' ? Logger.INFO : Logger.DEBUG
 // app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
 
 // Base api route initialization
-app.use('/api/user', require('./api/routers/user'));
-app.use('/api/shop', require('./api/routers/shop'));
+app.use('/api/user', userRouter);
+app.use('/api/shop', shopRouter);
 
 // Server listening
 app.listen(process.env.PORT, () => {

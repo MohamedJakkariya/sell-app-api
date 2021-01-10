@@ -4,27 +4,27 @@
 
 ## For users :
 
-> FETCH 
+> FETCH  ❌ 
 1. /api/user/login
 
-> INSERT
+> INSERT ❌
 2. /api/user/register
 
 ## For shops :
 
-> INSERT
+> INSERT ❌
 3. /api/shop/create/product
 4. /api/shop/create/sell
 
-> UPDATE
+> UPDATE ❌
 5. /api/shop/update/product
 6. /api/shop/update/sell
 
-> DELETE
+> DELETE ❌
 7. /api/shop/delete/product
 8. /api/shop/delete/sell
 
-> FETCH
+> FETCH ❌
 9. /api/shop/products
 10. /api/shop/sells
 11. /api/shop/analytics
