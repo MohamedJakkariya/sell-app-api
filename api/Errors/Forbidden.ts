@@ -1,11 +1,11 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 403 Forbidden
 class Forbidden extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('forbidden');
     else super(m);
   }
 }
 
-exports.Forbidden = Forbidden;
+export = Forbidden;

@@ -1,7 +1,13 @@
-/** @format */
+import { config } from 'dotenv';
+import Logger from 'js-logger';
 import mysql from 'mysql';
 
+// Set env configuration
+config();
+
 const { DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_PORT, DB_NAME } = process.env;
+
+Logger.info('db hostname', DB_HOSTNAME);
 
 const pool = mysql.createPool({
   host: DB_HOSTNAME,

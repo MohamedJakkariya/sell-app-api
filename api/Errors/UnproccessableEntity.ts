@@ -1,11 +1,11 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 422 Unprocessable Entity
 class UnprocessableEntity extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('unprocessable entity');
     else super(m);
   }
 }
 
-exports.UnprocessableEntity = UnprocessableEntity;
+export = UnprocessableEntity;

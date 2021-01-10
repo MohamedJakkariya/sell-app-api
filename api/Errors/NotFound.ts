@@ -1,8 +1,8 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 404 Not Found
 class NotFound extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('not found');
     else super(m);
   }

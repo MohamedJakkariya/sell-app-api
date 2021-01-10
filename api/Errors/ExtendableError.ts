@@ -1,5 +1,5 @@
 class ExtendableError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     if (new.target === ExtendableError)
       throw new TypeError('Abstract class "ExtendableError" cannot be instantiated directly.');
     super(message);
@@ -7,6 +7,9 @@ class ExtendableError extends Error {
     this.message = message;
     Error.captureStackTrace(this, this.contructor);
   }
+  contructor(arg0: this, contructor: any) {
+    throw new Error('Method not implemented.');
+  }
 }
 
-exports.ExtendableError = ExtendableError;
+export = ExtendableError;

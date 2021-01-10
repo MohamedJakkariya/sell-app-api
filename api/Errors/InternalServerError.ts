@@ -1,8 +1,8 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 500 Internal Server Error
 class InternalServerError extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('internal server error');
     else super(m);
   }

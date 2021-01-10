@@ -1,6 +1,8 @@
 // SQL error function
 class SqlError extends Error {
-  constructor(message) {
+  status: number;
+  result: boolean;
+  constructor(message: string) {
     super(message);
 
     this.name = 'Sql Error';
@@ -9,6 +11,6 @@ class SqlError extends Error {
   }
 }
 
-exports.throwSqlError = msg => {
+exports.throwSqlError = (msg: string) => {
   throw new SqlError(msg);
 };

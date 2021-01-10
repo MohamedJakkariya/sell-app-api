@@ -1,11 +1,11 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 401 Unauthorized
 class Unauthorized extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('unauthorized');
     else super(m);
   }
 }
 
-exports.Unauthorized = Unauthorized;
+export = Unauthorized;

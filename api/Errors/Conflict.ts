@@ -1,11 +1,11 @@
-const { ExtendableError } = require('./ExtendableError');
+import ExtendableError from './ExtendableError';
 
 // 409 Conflict
 class Conflict extends ExtendableError {
-  constructor(m) {
+  constructor(m: string) {
     if (arguments.length === 0) super('conflict');
     else super(m);
   }
 }
 
-exports.Conflict = Conflict;
+export = Conflict;
