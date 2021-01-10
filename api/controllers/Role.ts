@@ -1,1 +1,1 @@
-export class Role {}
+export default class Role {}
