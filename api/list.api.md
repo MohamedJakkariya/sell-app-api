@@ -2,21 +2,21 @@
 
 > Note : end of the **purpose** should be singular.
 
-## For users :
+## For owners :
 
 > FETCH ❌
 
-1. /api/user/login
+1. /api/user/login |POST|
 
-> INSERT ❌ 2. /api/user/register
+> INSERT ❌ 2. /api/user/register |POST|
 
 ## For shops :
 
 > INSERT ❌
 
-1. /api/shop/create
-2. /api/shop/create/product ✔
-3. /api/shop/create/sell
+1. /api/shop/create |POST|
+2. /api/shop/create/product |POST| |✔|
+3. /api/shop/create/sell |POST|
 
 > UPDATE ❌ 5. /api/shop/update/product 6. /api/shop/update/sell
 

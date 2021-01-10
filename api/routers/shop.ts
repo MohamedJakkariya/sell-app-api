@@ -8,6 +8,15 @@ const { createProduct } = new Product();
 /**
  * @type : POST
  * @access : -
+ * @description : This route is used to create a shop
+ * @body : name
+ * @requires: Bearer <token>
+ */
+router.post('/create');
+
+/**
+ * @type : POST
+ * @access : -
  * @description : This route is used to create product
  * @body : shopId, name, label, labelColor, amount
  * @requires: @body

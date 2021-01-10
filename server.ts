@@ -9,6 +9,7 @@ import { IGlobal } from 'global';
 // Router files
 import userRouter from './api/routers/user';
 import shopRouter from './api/routers/shop';
+import roleRouter from './api/routers/roler';
 
 declare const global: IGlobal;
 
@@ -44,9 +45,10 @@ Logger.setLevel(process.env.LOGGER === 'production' ? Logger.INFO : Logger.DEBUG
 // Base api route initialization
 app.use('/api/user', userRouter);
 app.use('/api/shop', shopRouter);
+app.use('/api/role', roleRouter);
 
 // Server listening
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 4000, () => {
   Logger.info(`Server running on ${process.env.PORT}`);
 });
 
