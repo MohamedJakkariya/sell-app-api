@@ -8,6 +8,9 @@ class SqlError extends Error {
     this.name = 'Sql Error';
     this.status = 500;
     this.result = false;
+
+    // Set the prorotype explicitly
+    Object.setPrototypeOf(this, SqlError.prototype);
   }
 }
 

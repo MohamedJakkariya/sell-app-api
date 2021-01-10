@@ -10,6 +10,7 @@ import db from '../../db';
 import { ICreateProductItem } from 'types/shopApi';
 
 import BadRequest from 'api/Errors/BadRequest';
+import ExtendableError from 'api/Errors/ExtendableError';
 
 /**
  * @type : POST
@@ -26,9 +27,6 @@ router.post('/', async (req: Request, res: Response) => {
     try {
       // extract the body of payload
       const { shopId, name, label, labelColor, amount }: ICreateProductItem = req.body;
-
-      let obj = new BadRequest('test instanse');
-      Logger.info(obj instanceof BadRequest);
 
       //   Check basic validations
       if (!shopId || !name || !label || !amount) throw new BadRequest('Missing Fields');
