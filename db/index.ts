@@ -60,18 +60,18 @@ const getOne = (
 /**
  * @params : Options<Object>
  * @return : <Promise>
- * @desc :   Get all data from the given tables
+ * @desc :   Insert a data to the table and returned the insertedId
  */
 const insertOne = (
   connection: mysql.PoolConnection,
   options: { table_name: string; data: object }
-): Promise<mysql.Query> => {
+): Promise<{ insertId: number }> => {
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO ${options.table_name} SET ?`, options.data, (err, results) => {
       if (err) return reject(err);
 
       Logger.log(`Inserted id ${results.insertId}!`);
-      return resolve(results);
+      return resolve(results.insertId);
     });
   });
 };
