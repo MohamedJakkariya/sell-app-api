@@ -13,7 +13,7 @@
 ## For shops :
 
 > INSERT ❌  
-1. /api/shop/create     |POST| 
+1. /api/shop/create     |POST| |✔|
 2. /api/shop/create/product |POST| |✔|
 3. /api/shop/create/sell  |POST|
 
