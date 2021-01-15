@@ -34,8 +34,8 @@
 3. /api/shop/delete/product |✔|
 4. /api/shop/delete/sell |✔|
 
-> FETCH ❌
+> FETCH 💹 - tested
 
-1. /api/shop/products
-2. /api/shop/sells
+1. /api/shop/products |✔|
+2. /api/shop/sells |✔|
 3. /api/shop/analytics

@@ -7,7 +7,7 @@ const router = Router();
 // Set instance of Product
 const { createProduct, updateProduct, deleteProduct, fetchAllProducts } = new Product();
 const { createShop, updateShop, updateShopAddress, deleteShopAddress, deleteShop } = new Shop();
-const { createSell, updateSell, deleteSell } = new Sell();
+const { createSell, updateSell, deleteSell, fetchAllSells } = new Sell();
 
 /**
  * ==================================================================================
@@ -60,11 +60,11 @@ router.get('/fetch/products/:shopId', fetchAllProducts);
 /**
  * @type : GET
  * @access : -
- * @description : This route is used to get all the products of the shop
+ * @description : This route is used to get all the sells of the shop
  * @requires: -
  * @params : shopId
  */
-router.get('/fetch/sells/:shopId');
+router.get('/fetch/sells/:shopId', fetchAllSells);
 
 /**
  * ==================================================================================

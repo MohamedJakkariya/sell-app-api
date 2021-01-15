@@ -16,6 +16,18 @@ export default class Sell {
    * @param req it's automatically passed my express
    * @param res it's automatically passed my express
    */
+  fetchAllSells = async (req: Request, res: Response) => {
+    await utils.fetchor(req, res, {
+      tableName: 'sells',
+      id: +req.params.shopId,
+      projection: 'id, shopId, skus, description, isPaid, due, createdAt'
+    });
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
   createSell = async (req: Request, res: Response) => {
     try {
       // get a pool connection
@@ -87,7 +99,7 @@ export default class Sell {
     await utils.updator(req, res, {
       fieldChecks: ['description', 'isPaid', 'amount', 'due'],
       tableName: 'sells',
-      id: req.body.id,
+      id: +req.body.id,
       updatingFields: req.body.updatingFields
     });
   };

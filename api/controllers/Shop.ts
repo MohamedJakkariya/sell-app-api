@@ -127,7 +127,7 @@ export default class Shop {
     await utils.updator(req, res, {
       fieldChecks: ['isActive'],
       tableName: 'shopaddress',
-      id: req.body.id,
+      id: +req.body.id,
       updatingFields: req.body.updatingFields
     });
   };
