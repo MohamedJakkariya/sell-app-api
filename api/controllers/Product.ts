@@ -70,7 +70,7 @@ export default class Product {
    */
   updateProduct = async (req: Request, res: Response) => {
     await utils.updator(req, res, {
-      fieldChecks: ['description', 'isPaid', 'amount', 'due'],
+      fieldChecks: ['name', 'label', 'labelColor', 'amount', 'remStock', 'totalStock', 'isActive'],
       tableName: 'products',
       id: req.body.id,
       updatingFields: req.body.updatingFields

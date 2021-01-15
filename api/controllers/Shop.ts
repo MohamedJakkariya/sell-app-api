@@ -6,6 +6,7 @@ import { getReasonPhrase, StatusCodes } from 'http-status-codes';
 import Logger from 'js-logger';
 import { ICreateShop } from 'types/shopApi';
 import db from '../../db';
+import utils from '../utils';
 
 export default class Shop {
   /**
@@ -76,5 +77,31 @@ export default class Shop {
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
         .json({ message: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR) });
     }
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  updateShop = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['name', 'isActive'],
+      tableName: 'shops',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  updateShopAddress = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['address', 'city', 'state', 'country', 'postalCode', 'isActive'],
+      tableName: 'shopaddress',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
   };
 }

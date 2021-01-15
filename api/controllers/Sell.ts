@@ -9,6 +9,7 @@ import { ICreateSell } from 'types/shopApi';
 
 import BadRequest from 'api/Errors/BadRequest';
 import { nanoid } from 'nanoid';
+import utils from '../utils';
 
 export default class Sell {
   /**
@@ -76,5 +77,18 @@ export default class Sell {
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
         .json({ message: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR) });
     }
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  updateSell = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['description', 'isPaid', 'amount', 'due'],
+      tableName: 'sells',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
   };
 }
