@@ -14,13 +14,13 @@
 
 ## For shops :
 
-> INSERT 💹
+> INSERT 💹 - tested
 
 1. /api/shop/create |POST| |✔|
 2. /api/shop/create/product |POST| |✔|
 3. /api/shop/create/sell |POST| |✔|
 
-> UPDATE 💹
+> UPDATE 💹 - tested
 
 1. /api/shop/update |✔|
 2. /api/shop/update/product |✔|

@@ -48,7 +48,7 @@ const updator = async (
       // send response
       return res.status(200).json({
         result: true,
-        message: 'product added successfully'
+        message: `${tableName.slice(0, -1)} updated successfully`
       });
     } finally {
       connection.release();
