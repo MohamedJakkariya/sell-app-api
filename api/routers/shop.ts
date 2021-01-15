@@ -60,7 +60,7 @@ router.post('/create/sell', createSell);
  *      }
  *   }
  */
-router.post('/update/shop', updateShop);
+router.post('/update', updateShop);
 
 /**
  * @type : POST
@@ -78,7 +78,7 @@ router.post('/update/shop', updateShop);
  *      }
  *   }
  */
-router.post('/update/shop/address', updateShopAddress);
+router.post('/update/address', updateShopAddress);
 
 /**
  * @type : POST

@@ -18,8 +18,10 @@
 3. /api/shop/create/sell  |POST| |✔|
 
 > UPDATE ❌
-5. /api/shop/update/product
-6. /api/shop/update/sell
+1. /api/shop/update/product |✔|
+2. /api/shop/update/sell |✔|
+3. /api/shop/update |✔|
+4. /api/shop/update/address |✔|
 
 > DELETE ❌
 7. /api/shop/delete/product
