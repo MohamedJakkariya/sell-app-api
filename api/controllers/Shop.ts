@@ -85,7 +85,20 @@ export default class Shop {
    */
   updateShop = async (req: Request, res: Response) => {
     await utils.updator(req, res, {
-      fieldChecks: ['name', 'isActive'],
+      fieldChecks: ['name'],
+      tableName: 'shops',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  deleteShop = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['isActive'],
       tableName: 'shops',
       id: req.body.id,
       updatingFields: req.body.updatingFields
@@ -98,7 +111,20 @@ export default class Shop {
    */
   updateShopAddress = async (req: Request, res: Response) => {
     await utils.updator(req, res, {
-      fieldChecks: ['address', 'city', 'state', 'country', 'postalCode', 'isActive'],
+      fieldChecks: ['address', 'city', 'state', 'country', 'postalCode'],
+      tableName: 'shopaddress',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  deleteShopAddress = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['isActive'],
       tableName: 'shopaddress',
       id: req.body.id,
       updatingFields: req.body.updatingFields

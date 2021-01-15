@@ -4,30 +4,36 @@
 
 ## For owners :
 
-> FETCH  ❌ 
-1. /api/user/login  |POST|
+> FETCH ❌
 
-> INSERT ❌
-2. /api/user/register   |POST|
-   
+1. /api/user/login |POST|
+
+> INSERT ❌ 2. /api/user/register |POST|
+
 ## For shops :
 
-> INSERT ❌  
-1. /api/shop/create     |POST| |✔|
+> INSERT 💹
+
+1. /api/shop/create |POST| |✔|
 2. /api/shop/create/product |POST| |✔|
-3. /api/shop/create/sell  |POST| |✔|
-    
-> UPDATE ❌
-1. /api/shop/update/product |✔|
-2. /api/shop/update/sell |✔|
-3. /api/shop/update |✔|
+3. /api/shop/create/sell |POST| |✔|
+
+> UPDATE 💹
+
+1. /api/shop/update |✔|
+2. /api/shop/update/product |✔|
+3. /api/shop/update/sell |✔|
 4. /api/shop/update/address |✔|
 
-> DELETE ❌
-7. /api/shop/delete/product
-8. /api/shop/delete/sell
+> DELETE 💹
+
+1. /api/shop/delete |✔|
+2. /api/shop/delete/address |✔|
+3. /api/shop/delete/product |✔|
+4. /api/shop/delete/sell |✔|
 
 > FETCH ❌
-9. /api/shop/products
-10. /api/shop/sells
-11. /api/shop/analytics
+
+1. /api/shop/products
+2. /api/shop/sells
+3. /api/shop/analytics

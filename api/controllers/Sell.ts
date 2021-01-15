@@ -91,4 +91,17 @@ export default class Sell {
       updatingFields: req.body.updatingFields
     });
   };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  deleteSell = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['isActive'],
+      tableName: 'sells',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
+  };
 }

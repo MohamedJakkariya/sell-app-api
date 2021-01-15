@@ -70,7 +70,20 @@ export default class Product {
    */
   updateProduct = async (req: Request, res: Response) => {
     await utils.updator(req, res, {
-      fieldChecks: ['name', 'label', 'labelColor', 'amount', 'remStock', 'totalStock', 'isActive'],
+      fieldChecks: ['name', 'label', 'labelColor', 'amount', 'remStock', 'totalStock'],
+      tableName: 'products',
+      id: req.body.id,
+      updatingFields: req.body.updatingFields
+    });
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
+  deleteProduct = async (req: Request, res: Response) => {
+    await utils.updator(req, res, {
+      fieldChecks: ['isActive'],
       tableName: 'products',
       id: req.body.id,
       updatingFields: req.body.updatingFields

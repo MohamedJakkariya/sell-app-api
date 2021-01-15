@@ -5,9 +5,9 @@ import { Router } from 'express';
 const router = Router();
 
 // Set instance of Product
-const { createProduct, updateProduct } = new Product();
-const { createShop, updateShop, updateShopAddress } = new Shop();
-const { createSell, updateSell } = new Sell();
+const { createProduct, updateProduct, deleteProduct } = new Product();
+const { createShop, updateShop, updateShopAddress, deleteShopAddress, deleteShop } = new Shop();
+const { createSell, updateSell, deleteSell } = new Sell();
 
 /**
  * ==================================================================================
@@ -116,5 +116,67 @@ router.post('/update/sell', updateSell);
  *   }
  */
 router.post('/update/product', updateProduct);
+
+/**
+ * ==================================================================================
+ *                          TO DELETE THE DATA FROM THE TABLE
+ * ==================================================================================
+ */
+
+/**
+ * @type : POST
+ * @access : -
+ * @description : This route is used to delete the shop informations
+ * @requires: -
+ * @body : {
+ *    "id",
+ *     "updatingFields" : {
+ *          "isActive"
+ *      }
+ *   }
+ */
+router.post('/delete', deleteShop);
+
+/**
+ * @type : POST
+ * @access : -
+ * @description : This route is used to delete the sell informations
+ * @requires: -
+ * @body : {
+ *    "id",
+ *     "updatingFields" : {
+ *          "isActive"
+ *      }
+ *   }
+ */
+router.post('/delete/sell', deleteSell);
+
+/**
+ * @type : POST
+ * @access : -
+ * @description : This route is used to delete the product informations
+ * @requires: -
+ * @body : {
+ *    "id",
+ *     "updatingFields" : {
+ *          "isActive"
+ *      }
+ *   }
+ */
+router.post('/delete/product', deleteProduct);
+
+/**
+ * @type : POST
+ * @access : -
+ * @description : This route is used to delete the shop address informations
+ * @requires: -
+ * @body : {
+ *    "id",
+ *     "updatingFields" : {
+ *          "isActive"
+ *      }
+ *   }
+ */
+router.post('/delete/address', deleteShopAddress);
 
 export default router;
