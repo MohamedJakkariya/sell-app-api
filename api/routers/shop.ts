@@ -38,7 +38,7 @@ router.post('/create/product', createProduct);
  * @access : -
  * @description : This route is used to create a sell on that shop
  * @requires: -
- * @body : { "shopId", "description", "isPaid", "due" }
+ * @body : { "shopId", "description", "isPaid", "due", "amount", "productList" }
  */
 router.post('/create/sell', createSell);
 

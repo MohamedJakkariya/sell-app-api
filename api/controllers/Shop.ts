@@ -26,7 +26,8 @@ export default class Shop {
         const userId = req.body.id;
 
         // basic validations
-        if (!name || !address || !city || !postalCode || !state || !country) throw new BadRequest('Missng Fields');
+        if (!name || !address || !city || !postalCode || !state || !country || !userId)
+          throw new BadRequest('Missng Fields');
 
         // Insert a new shop
         const insertShopId = await db.insertOne(connection, {
@@ -57,7 +58,7 @@ export default class Shop {
           shopId: insertShopId,
           shopAddressId: insertShopAddressId,
           name,
-          message: "you're successfully created"
+          message: 'youre shop is cretaed successfully'
         });
       } finally {
         connection.release();

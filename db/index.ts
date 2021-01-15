@@ -225,7 +225,11 @@ const insertIntoMultiTables = (connection: mysql.PoolConnection, options: any[])
 const insertIntoMultiData = (
   connection: mysql.PoolConnection,
   options: { data: {}[]; table_name: string }
-): Promise<mysql.Query> => {
+): Promise<
+  {
+    insertId: number;
+  }[]
+> => {
   return new Promise((resolve, reject) => {
     const baseQ = `INSERT INTO SET ? ; `;
 
@@ -237,8 +241,8 @@ const insertIntoMultiData = (
     connection.query(`${genQ}`, options.data, (err, results) => {
       if (err) return reject(err);
 
-      results.forEach((i: { insertId: any }) => Logger.log(`Inserted id ${i.insertId}!`));
-      return resolve(results);
+      [].concat(results).forEach((i: { insertId: any }) => Logger.log(`Inserted id ${i.insertId}!`));
+      return resolve([].concat(results));
     });
   });
 };

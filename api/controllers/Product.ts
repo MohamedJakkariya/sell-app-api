@@ -28,7 +28,7 @@ export default class Product {
         if (!shopId || !name || !label || !amount) throw new BadRequest('Missing Fields');
 
         // Insert a single product into db
-        await db.insertOne(connection, {
+        const product = await db.insertOne(connection, {
           table_name: 'products',
           data: {
             shopId: +shopId,
@@ -42,6 +42,7 @@ export default class Product {
         // send response
         return res.status(200).json({
           result: true,
+          productId: product.insertId,
           message: 'product added successfully'
         });
       } finally {

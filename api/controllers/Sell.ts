@@ -32,7 +32,7 @@ export default class Sell {
           if (!product.productId) throw new BadRequest('Missing product id');
         });
 
-        const sellSkusId = nanoid(4).toLowerCase();
+        const sellSkusId = nanoid(4);
 
         // Insert a sell into db
         const sell = await db.insertOne(connection, {
@@ -55,8 +55,8 @@ export default class Sell {
         // send response
         return res.status(200).json({
           result: true,
-          message: 'sell added successfully',
-          sellId: sell.insertId,
+          message: 'new sell was added successfully',
+          id: sell.insertId,
           skus: sellSkusId
         });
       } finally {

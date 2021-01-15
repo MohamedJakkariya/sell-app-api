@@ -8,7 +8,9 @@
 
 1. /api/user/login |POST|
 
-> INSERT ❌ 2. /api/user/register |POST|
+> INSERT ❌
+
+2. /api/user/register |POST|
 
 ## For shops :
 
