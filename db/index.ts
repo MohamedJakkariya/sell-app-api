@@ -224,7 +224,7 @@ const insertIntoMultiTables = (connection: mysql.PoolConnection, options: any[])
  */
 const insertIntoMultiData = (
   connection: mysql.PoolConnection,
-  options: { data: string | any[]; table_name: string }
+  options: { data: {}[]; table_name: string }
 ): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     const baseQ = `INSERT INTO SET ? ; `;

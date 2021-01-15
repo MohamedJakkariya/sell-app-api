@@ -1,11 +1,5 @@
 /**
- * @body {
- *    "shopId": "",
- *    "name": "",
- *    "label": "",
- *    "labelColor": "",
- *    "amount": "",
- * }
+ * @body : { "shopId", "name", "label", "labelColor", "amount" }
  */
 export interface ICreateProductItem {
   shopId: number | string;
@@ -16,14 +10,7 @@ export interface ICreateProductItem {
 }
 
 /**
- * @body {
- *    "name": "",
- *    "address": "",
- *    "city": "",
- *    "country": "",
- *    "state": "",
- *    "postalCode": ""
- * }
+ * @body { "name", "address", "city", "country", "state", "postalCode" }
  */
 export interface ICreateShop {
   name: string;
@@ -32,4 +19,18 @@ export interface ICreateShop {
   state: string;
   country: string;
   postalCode: number | string;
+}
+
+/**
+ * @body : { "shopId", "description", "isPaid", "due" }
+ */
+export interface ICreateSell {
+  shopId: number | string;
+  description?: string;
+  isPaid: boolean;
+  amount: number | string;
+  due?: number | string;
+  productList: {
+    productId: number | string;
+  }[];
 }

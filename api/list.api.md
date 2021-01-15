@@ -15,7 +15,7 @@
 > INSERT ❌  
 1. /api/shop/create     |POST| |✔|
 2. /api/shop/create/product |POST| |✔|
-3. /api/shop/create/sell  |POST|
+3. /api/shop/create/sell  |POST| |✔|
 
 > UPDATE ❌
 5. /api/shop/update/product
