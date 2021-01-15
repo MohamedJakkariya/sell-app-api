@@ -128,8 +128,8 @@ const updateOne = (
     table_name: string;
     updating_fields: string;
     key: string;
-    updating_values: [];
-    value: [] | number | string;
+    updating_values: (string | number | boolean | undefined)[];
+    value: (number | string)[] | number | string;
   }
 ): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
