@@ -43,7 +43,7 @@ const getAll = (
  */
 const getOne = (
   connection: mysql.PoolConnection,
-  options: { projection: string; table_name: string; condition: string; values: [] | number | string }
+  options: { projection: string; table_name: string; condition: string; values: (string | number)[] | number | string }
 ): Promise<mysql.Query> => {
   return new Promise((resolve, reject) => {
     connection.query(

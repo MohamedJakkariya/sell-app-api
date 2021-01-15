@@ -27,7 +27,7 @@
 3. /api/shop/update/sell |✔|
 4. /api/shop/update/address |✔|
 
-> DELETE 💹
+> DELETE 💹 - tested
 
 1. /api/shop/delete |✔|
 2. /api/shop/delete/address |✔|

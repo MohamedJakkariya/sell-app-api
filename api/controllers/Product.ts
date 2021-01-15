@@ -15,6 +15,54 @@ export default class Product {
    * @param req it's automatically passed my express
    * @param res it's automatically passed my express
    */
+  fetchAllProducts = async (req: Request, res: Response) => {
+    try {
+      // get a pool connection
+      const connection = await db.poolConnect(pool);
+      try {
+        // extrac the params id
+        const shopId = +req.params.shopId;
+
+        // Validation
+        if (!shopId) throw new BadRequest('Missing params');
+
+        // Fetch data from db
+        const products = await db.getOne(connection, {
+          table_name: 'products',
+          projection: 'id, name, label, labelColor, amount, remStock, totalStock',
+          condition: 'isActive = 1 and shopId = ?',
+          values: [shopId]
+        });
+
+        // send response
+        return res.status(200).json({
+          result: true,
+          data: products
+        });
+      } finally {
+        connection.release();
+      }
+    } catch (err) {
+      // 400
+      if (err instanceof BadRequest)
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ result: false, error: getReasonPhrase(StatusCodes.BAD_REQUEST), message: err.message });
+
+      // 500
+      if (err.code)
+        Logger.error(chalk`code : {red ${err.code}}\nmessage : {yellow ${err.sqlMessage}}\nsql : {green ${err.sql}}`);
+      else Logger.error(err);
+      return res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR) });
+    }
+  };
+
+  /**
+   * @param req it's automatically passed my express
+   * @param res it's automatically passed my express
+   */
   createProduct = async (req: Request, res: Response) => {
     try {
       // get a pool connection
@@ -57,7 +105,7 @@ export default class Product {
 
       // 500
       if (err.code)
-        Logger.info(chalk`code : {red ${err.code}}\nmessage : {yellow ${err.sqlMessage}}\nsql : {green ${err.sql}}`);
+        Logger.error(chalk`code : {red ${err.code}}\nmessage : {yellow ${err.sqlMessage}}\nsql : {green ${err.sql}}`);
       else Logger.error(err);
       return res
         .status(StatusCodes.INTERNAL_SERVER_ERROR)

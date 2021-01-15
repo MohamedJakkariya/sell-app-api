@@ -5,7 +5,7 @@ import { Router } from 'express';
 const router = Router();
 
 // Set instance of Product
-const { createProduct, updateProduct, deleteProduct } = new Product();
+const { createProduct, updateProduct, deleteProduct, fetchAllProducts } = new Product();
 const { createShop, updateShop, updateShopAddress, deleteShopAddress, deleteShop } = new Shop();
 const { createSell, updateSell, deleteSell } = new Sell();
 
@@ -44,6 +44,30 @@ router.post('/create/sell', createSell);
 
 /**
  * ==================================================================================
+ *                          TO FETCH THE DATA FROM THE TABLE
+ * ==================================================================================
+ */
+
+/**
+ * @type : GET
+ * @access : -
+ * @description : This route is used to get all the products of the shop
+ * @requires: -
+ * @params : shopId
+ */
+router.get('/fetch/products/:shopId', fetchAllProducts);
+
+/**
+ * @type : GET
+ * @access : -
+ * @description : This route is used to get all the products of the shop
+ * @requires: -
+ * @params : shopId
+ */
+router.get('/fetch/sells/:shopId');
+
+/**
+ * ==================================================================================
  *                          TO UPDATE THE TABLE
  * ==================================================================================
  */
@@ -60,7 +84,7 @@ router.post('/create/sell', createSell);
  *      }
  *   }
  */
-router.post('/update', updateShop);
+router.patch('/update', updateShop);
 
 /**
  * @type : POST
@@ -78,7 +102,7 @@ router.post('/update', updateShop);
  *      }
  *   }
  */
-router.post('/update/address', updateShopAddress);
+router.patch('/update/address', updateShopAddress);
 
 /**
  * @type : POST
@@ -95,7 +119,7 @@ router.post('/update/address', updateShopAddress);
  *      }
  *   }
  */
-router.post('/update/sell', updateSell);
+router.patch('/update/sell', updateSell);
 
 /**
  * @type : POST
@@ -115,7 +139,7 @@ router.post('/update/sell', updateSell);
  *      }
  *   }
  */
-router.post('/update/product', updateProduct);
+router.patch('/update/product', updateProduct);
 
 /**
  * ==================================================================================
@@ -135,7 +159,7 @@ router.post('/update/product', updateProduct);
  *      }
  *   }
  */
-router.post('/delete', deleteShop);
+router.delete('/delete', deleteShop);
 
 /**
  * @type : POST
@@ -149,7 +173,7 @@ router.post('/delete', deleteShop);
  *      }
  *   }
  */
-router.post('/delete/sell', deleteSell);
+router.delete('/delete/sell', deleteSell);
 
 /**
  * @type : POST
@@ -163,7 +187,7 @@ router.post('/delete/sell', deleteSell);
  *      }
  *   }
  */
-router.post('/delete/product', deleteProduct);
+router.delete('/delete/product', deleteProduct);
 
 /**
  * @type : POST
@@ -177,6 +201,6 @@ router.post('/delete/product', deleteProduct);
  *      }
  *   }
  */
-router.post('/delete/address', deleteShopAddress);
+router.delete('/delete/address', deleteShopAddress);
 
 export default router;
