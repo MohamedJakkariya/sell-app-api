@@ -1,8 +1,0 @@
-{
-  "extends": ["prettier", "tslint:recommended"],
-  "plugins": ["prettier"],
-  "rules": {
-    "trailing-comma": [false]
-  },
-  "rulesDirectory": []
-}
