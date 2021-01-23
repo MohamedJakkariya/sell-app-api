@@ -19,7 +19,7 @@ export default class Product {
     await utils.fetchor(req, res, {
       tableName: 'products',
       id: +req.params.shopId,
-      projection: 'id, name, label, labelColor, amount, remStock, totalStock'
+      projection: 'id, name, label, labelColor, amount, remStock, totalStock, createdAt'
     });
   };
 
