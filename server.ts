@@ -42,6 +42,10 @@ Logger.setLevel(process.env.LOGGER === 'production' ? Logger.INFO : Logger.DEBUG
 // Set static folder path
 // app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+});
+
 // Base api route initialization
 app.use('/api/user', userRouter);
 app.use('/api/shop', shopRouter);
