@@ -1,15 +1,15 @@
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import { config } from 'dotenv';
 import express from 'express';
+import { IGlobal } from 'global';
+import Logger from 'js-logger';
 import morgan from 'morgan';
 import path from 'path';
-import Logger from 'js-logger';
-import bodyParser from 'body-parser';
-import { IGlobal } from 'global';
-
+import roleRouter from './api/routers/roler';
+import shopRouter from './api/routers/shop';
 // Router files
 import userRouter from './api/routers/user';
-import shopRouter from './api/routers/shop';
-import roleRouter from './api/routers/roler';
 
 declare const global: IGlobal;
 
@@ -32,6 +32,7 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 //  Set Logger default settings
 Logger.useDefaults();
@@ -41,10 +42,6 @@ Logger.setLevel(process.env.LOGGER === 'production' ? Logger.INFO : Logger.DEBUG
 
 // Set static folder path
 // app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-});
 
 // Base api route initialization
 app.use('/api/user', userRouter);
