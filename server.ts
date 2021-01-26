@@ -32,7 +32,15 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+
+// TODO: configure cors domian options
+
+app.use(
+  cors({
+    origin: ['http://localhost:4000', 'http://192.168.43.19:3000'],
+    optionsSuccessStatus: 200
+  })
+);
 
 //  Set Logger default settings
 Logger.useDefaults();
